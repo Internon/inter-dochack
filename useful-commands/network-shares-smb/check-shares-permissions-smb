@@ -1,0 +1,5 @@
+With smbmap we can check the permissions that our user has on a network share we can check too if without user we can read it
+
+smbmap -u {USER} -p {PASSW} -d {DOMAIN} -H {HOST}
+
+With interlace we can make that on networks

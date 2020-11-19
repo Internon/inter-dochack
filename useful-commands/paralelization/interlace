@@ -1,0 +1,3 @@
+interlace -tL ./targets.txt -threads 5 -c "nikto --host _target_ > ./_target_-nikto.txt" -v
+
+_target_ will be changed with the target on -tL field

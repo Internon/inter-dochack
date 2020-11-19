@@ -1,0 +1,4 @@
+Execute the following mkinitcpio to generate the initramfs-linux image
+Take -k from:
+ls -la /lib/modules/ | grep arch
+sudo mkinitcpio -g /boot/initramfs-linux.img -k 5.9.2-arch1-1

@@ -1,0 +1,3 @@
+to don't update libraries for stop performing dual monitor because a update has break the functionality use the following command:
+
+sudo pacman -Syyyu --ignore xorg-server --ignore xf86-video-qxl

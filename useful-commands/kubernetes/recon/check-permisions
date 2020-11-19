@@ -1,0 +1,15 @@
+List Pods:
+
+curl -v -H “Authorization: Bearer <jwt_token>” https://<master_ip>:<port>/api/v1/namespaces/default/pods/
+
+List secrets:
+
+curl -v -H “Authorization: Bearer <jwt_token>” https://<master_ip>:<port>/api/v1/namespaces/default/secrets/
+
+List deployments:
+
+curl -v -H “Authorization: Bearer <jwt_token>” https://<master_ip:<port>/apis/extensions/v1beta1/namespaces/default/deployments
+
+List daemonsts:
+
+url -v -H “Authorization: Bearer <jwt_token>” https://<master_ip:<port>/apis/extensions/v1beta1/namespaces/default/daemonsets

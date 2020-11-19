@@ -1,0 +1,34 @@
+I have made a bash that automates this 
+###Process
+##1 - nmap full ports and if there is a lot of IPs use interlace
+sudo interlace -tL targets.txt -threads 100 -c "nmap -sSV -T4 -PS22,53,80,135,443,445,993,995,1521,3306,3389,5985,5986,8080,8081,8090,9001,9002 -oA _target_ --open -p- _target_"
+##2 - insert nmap to msfconsole
+db_import {PATH}/*.xml
+##3 - Output services to file:
+services -o {PATH}/all-ports.txt
+##4 - Parse output for aquatone and execute it on aquatone
+#HTTP
+cat all-ports.txt | awk -F '","' '{print "http://"$1":"$2"/"}' | sed 's/"//g' | tail -n+2 | aquatone -screenshot-timeout 120000 -threads 40 -http-timeout 120000 --scan-timeout 120000 -out {PATH}/initial-files-found-http/
+#HTTPS
+cat all-ports.txt | awk -F '","' '{print "https://"$1":"$2"/"}' | sed 's/"//g' | tail -n+2 | aquatone -screenshot-timeout 120000 -threads 40 -http-timeout 120000 --scan-timeout 120000 -out {PATH}/initial-files-found-https/
+##5 - Wfuzz to all URLs
+#HTTP
+for i in $(cat ../initial-files-found-http/aquatone_urls.txt); do wfuzz --efield url -t 40 --hc 400,404,503 -w /home/jedi/Desktop/discovery/web-discovery/path/my-small-dict.txt -f {PATHH}/FUZZING/$i-http.txt -Z -L $i/FUZZ ; done
+#HTTPS
+for i in $(cat ../initial-files-found-https/aquatone_urls.txt); do wfuzz --efield url -t 40 --hc 400,404,503 -w /home/jedi/Desktop/discovery/web-discovery/path/my-small-dict.txt -f {PATHH}/FUZZING/$i-https.txt -Z -L $i/FUZZ ; done
+##6 - Parse output for eyewitness or aquatone
+cat {PATH}/*.txt | grep http | awk -F "|" '{print $2}' | grep http | sed 's/^ //g' | sed 's/"//g' | sort -u > {PATH}/eyewitness-file-all-urls.txt
+##7 - Execute eyewitness
+eyewitness -f {PATH}/eyewitness-file-all-urls.txt --jitter 1 -d {PATH}/eyewitness-urls-found --timeout 60 --threads 40 --web
+##8 Review screenshots
+
+Wfuzz can say thyings like words in a page, and seems more quick than dirsearch and gobuster
+wfuzz --efield url -t 40 --hc 400,404 -w {DICT} -f {PATH}/{FILENAME} -Z -L {URL}/FUZZ
+
+Example:
+wfuzz --efield url -t 40 --hc 400,404,503 -w /home/jedi/Desktop/discovery/web-discovery/path/my-small-dict.txt -f /home/jedi/Desktop/Pentests/eDO/IPT2020Q4/10.2.160.0-19/fuzzing/10.2.160.169.txt -Z -L http://10.2.160.169:8080/FUZZ
+
+cat $(pwd)/*.txt | grep 200 | grep http | awk -F "|" '{print $2}' | grep http | sed 's/^ //g' | sed 's/"//g' | sort -u
+
+#Automatic:
+for i in $(cat ../initial-ports-http/aquatone_urls.txt); do wfuzz -t 40 --hc 400,404,503 -w /home/jedi/Desktop/discovery/web-discovery/path/my-small-dict.txt -f /home/jedi/Desktop/Pentests/eDO/IPT2020Q4/10.2.160.0-19/fuzzing/10.2.160.169.txt -Z -L $i/FUZZ ; done

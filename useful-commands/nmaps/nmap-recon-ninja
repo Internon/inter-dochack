@@ -1,0 +1,5 @@
+Suricata have some rules that knows when someone is scaning on the ports 1433, 3306, 5432, 5800-5820 so we won't scan this ports in order to don't alert the blue team.
+
+In addition we won't get the version of the services as this is alerting too on some suricatas
+
+sudo nmap -T4 -p0-1432,1434-3305,3307-5431,5433-5799,5821-65535 -PS22,53,80,135,443,445,993,995,1521,3389,5985,5986,8080,8081,8090,9001,9002 --open -oA {HOST} {HOST}

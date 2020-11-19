@@ -1,0 +1,1 @@
+Start-Process -FilePath powershell.exe -ArgumentList $code -verb RunAs -WorkingDirectory C:

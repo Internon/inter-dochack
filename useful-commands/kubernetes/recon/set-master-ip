@@ -1,0 +1,1 @@
+export KUBERNETES_MASTER=http://{MasterIP}:8080

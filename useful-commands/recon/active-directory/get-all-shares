@@ -1,3 +1,7 @@
+Bruteforce with smbmap:
+smbmap -u {USER} -p {PASSWORD} -d {DOMAIN} -H {HOST}
+With interlace you can set _target_ in HOST and make a targets.txt to make bruteforce on all network.
+
 # Import the AD module to the session
 Import-Module ActiveDirectory 
 # Retrieve the dNSHostName attribute from all computer accounts in AD

@@ -1,0 +1,4 @@
+kubectl --token=`cat {SERVICE-ACCOUNT-TOKEN-FILE}` --certificate-authority={CA-CERT-PATH} --server=http{/S}://{MASTERIP}:{MASTERPORT} --namespace=`cat {NAMESPACE-FILE}` get pods
+
+
+curl http{/S}://{MASTER-IP}:{MASTERPORT}/api/v1/namespaces/{NAMESPACENAME}/pods

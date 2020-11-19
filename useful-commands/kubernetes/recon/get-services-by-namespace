@@ -1,0 +1,2 @@
+If we have access
+kubectl get svc –all-namespaces

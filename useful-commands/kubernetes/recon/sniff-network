@@ -1,0 +1,5 @@
+Check if there is critical information in http.
+Monitor the server wher eyou will execute the tcpdump as it can raise the resources that the server needs and restart it. 
+tcpdump -i <INTERFACE> -v -X
+
+This tcpdump was an example, make your tcpdump

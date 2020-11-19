@@ -1,0 +1,2 @@
+As containers share the same kernel with the host, a vulnerbaiity on the kernel will be an access to the host
+cat /proc/version, uname -a.

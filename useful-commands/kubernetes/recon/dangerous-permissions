@@ -1,0 +1,25 @@
+list secrets
+	You can have any secret and there is the namespace, cert and token of service accounts that maybe can do more things that yours that only can list secrets
+
+create pods
+	You can mount the root node path and chroot onto it.
+	You can mount a service account with more permissions and get it after access this pod. If you don't have access onto the pod, you can perform an exfiltration of that data and get the token.
+
+impersonate permissions
+	You can impersonate a service account that have any permissions better than yours
+
+
+only get secrets.
+	You cant see the tokens name and you can't get it without the name, but if you can see the service accounts, it should be {SERVICE-ACCOUNT-NAME}-token-xxxxx so, you will need to bruteforce the 5 number ids.
+
+RoleBindings
+	You can bind the cluster admin role for example. Important new info A user can only create/update a role if they already have all the permissions contained in the role, at the same scope as the role (cluster-wide for a ClusterRole, within the same namespace or cluster-wide for a Role)”
+
+
+
+Create/Update Deployment, Daemonsets, Statefulsets, Replicationcontrollers, Replicasets, Jobs and Cronjobs
+	Deployment, Daemonsets, Statefulsets, Replicationcontrollers, Replicasets, Jobs and Cronjobs are all privileges that allow the creation of different tasks in the cluster, but they all share something in common. We can use all of them to develop pods and, if we have permission to create pods, we can potentially abuse it to escalate privileges just like in the previous example.
+
+
+Privilege to Use Pods/Exec
+	If you can access pods you can retrieve their service accounts and maybe some pod have some node folder mounted
