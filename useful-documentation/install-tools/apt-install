@@ -1,0 +1,2 @@
+Needs internet will install the dependencies
+apt install {PACKAGE}

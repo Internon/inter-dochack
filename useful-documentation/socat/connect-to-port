@@ -1,0 +1,3 @@
+The first - is the input, this tells that take it from the stdinput of a file or keyword, the second part is the connection
+
+socat - TCP:{IP}:{PORT}

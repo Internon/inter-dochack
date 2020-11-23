@@ -1,0 +1,21 @@
+##History
+Exclude commands to be added in history
+export HISTIGNORE="{command1}:{command2}:{command3}"
+
+Add time execution to history
+export HISTTIMEFORMAT="%F %T"
+
+
+##Alias
+Command we define ourself build from other commands
+alias {ourcommandname}='{command}'
+
+List alias
+alias
+
+
+##Persistent bash costumization
+/etc/bash.bashrc <- everyone
+~/.bashrc <- users
+
+

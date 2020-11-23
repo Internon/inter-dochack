@@ -1,0 +1,6 @@
+fork = child process
+File to send
+socat TCP4-LISTEN:{port},fork file:{filename}
+File to receive
+socat TCP4:{ip}:{port} file:{filename},create
+

@@ -1,0 +1,8 @@
+server:
+
+nc -lnvp {PORT} > {filename}
+
+
+Client:
+
+nc -nv {IPserver} {PORT} < {FILE TO TRANSFER}

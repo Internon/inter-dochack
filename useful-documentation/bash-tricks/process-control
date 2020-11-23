@@ -1,0 +1,7 @@
+List process system
+ps -ef
+ps -fC {command name}
+
+Kill process
+
+kill {PID}

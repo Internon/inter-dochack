@@ -1,0 +1,5 @@
+To redirect file input to command
+With that we don't need to make cat {FILE} | command
+{COMMAND} < {FILE}
+
+cat {FILE} | command

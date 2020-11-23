@@ -1,0 +1,7 @@
+Will show the jobs running in the current terminal session
+jobs
+
+Return to foreground
+fg %{JOB NUMBER}
+
+If there is 1 job on background fg will return this job

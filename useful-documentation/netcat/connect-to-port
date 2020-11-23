@@ -1,0 +1,5 @@
+We can make a tcp scanner with netcat if we make a for and output only open with grep
+nc -n -v {IP} {PORT}
+
+
+for ip in $(cat targets.txt); do for port in $(seq 1-65535) ; do nc -n -v $ip $port | grep open >> $ip-open-ports.txt ; done ; done

@@ -1,0 +1,3 @@
+show only ack and push bit sets on messages
+
+sudo tcpdump -A -n 'tcp[13] = 24' -r *.pcap

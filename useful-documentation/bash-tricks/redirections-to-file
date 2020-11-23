@@ -1,0 +1,6 @@
+To redirect the errors to a file
+{COMMAND} 2> {FILE}
+To redirect all output
+{COMMAND} &> {FILE}
+To redirect command output
+{COMMAND} 1> {FILE}

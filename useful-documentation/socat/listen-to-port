@@ -1,0 +1,3 @@
+Redirect the remote conection to STDOUT
+
+socat TCP4-LISTEN:{PORT} STDOUT

@@ -1,0 +1,9 @@
+default
+restricted
+
+Better set
+unrestricted
+
+Set-ExecutionPolicy Unrestricted
+
+Get-ExecutionPolicy

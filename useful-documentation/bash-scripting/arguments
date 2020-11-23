@@ -1,0 +1,7 @@
+$1 and $2 represents the first and second arguments past to script
+
+$0 refer to the name of scripts itself
+
+$? <- last state execution
+
+$RANDOM <- random number

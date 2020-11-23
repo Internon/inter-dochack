@@ -1,0 +1,6 @@
+Monitore file
+Update the output with changes in file
+tail -f {FILE}
+
+Monitore executing a command every X time
+watch -n {time} "{COMAND}"

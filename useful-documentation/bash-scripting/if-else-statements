@@ -1,0 +1,29 @@
+If statement [] <- reference to the test command
+if [ condition ] 
+then
+	{COMMAND}
+fi
+Same as above:
+if test condition
+then
+	{COMMAND}
+fi
+
+Else statement
+if [ condition ]
+then
+	{Command 1}
+else
+	{Command 2}
+fi
+
+Elif statement:
+if [ condition ]
+then
+	{Command 1}
+elif [ condition ]
+then
+	{Command 2}
+else 
+	{Command 3}
+fi

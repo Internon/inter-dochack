@@ -1,0 +1,3 @@
+Wont install the dependencies the package have.
+
+dpkg -i {package}.deb

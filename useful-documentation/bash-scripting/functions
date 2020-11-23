@@ -1,0 +1,30 @@
+Make functions where you will use it multiple times.
+Bash coders:
+function function_name
+{
+}
+C coders:
+function_name () {
+
+}
+
+But are the same
+
+Function can accept arguments
+$1 to first argument $2 to second argument, etc
+Function needs to be coded before execute
+
+Can't return a variable
+Just a number.
+If we need a variable, we can make a global variable to use outside the function
+Functions just return number
+
+Without number will return the state of the function
+
+Scope:
+By default a variable is global scope
+If you make a local variable it will be seen only inside the function
+
+local var="Value"
+
+

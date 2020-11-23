@@ -1,0 +1,9 @@
+Download files using http and ftp
+wget -O {filename} {URL}
+
+
+Transfer data to or from a server
+curl -o {filename} {URL}
+
+speed downloads
+axel -a -n {number of connetions} -o {filename} {URL}

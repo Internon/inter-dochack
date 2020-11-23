@@ -1,0 +1,11 @@
+
+And operator, executes only if previous command success or returns true or 0
+{Command1} && {Command2}
+Or operator, executes only if previous command fails or returns false or non 0
+{Command1} || {Command2}
+
+You can use it on an if statement
+
+if [] && [] <- both needs to be true to enter the if
+
+if [] || [] <- one of them needs to be true to enter the if

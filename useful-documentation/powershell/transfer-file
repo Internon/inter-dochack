@@ -1,0 +1,5 @@
+On Client make an http file
+
+On server:
+
+powershell -c "(new-object System.Net.WebClient).DownloadFile('{URL}','{FILEPATH}')"

@@ -1,0 +1,10 @@
+
+Background the process inmidietly it starts
+{COMMAND} &
+
+Suspend the job
+Ctrl + Z
+Background the last job and start it
+bg
+
+

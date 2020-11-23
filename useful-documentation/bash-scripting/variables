@@ -1,0 +1,25 @@
+Careful with case sensitive
+variable=content
+
+To use the variable use with $:
+$variable
+
+Quotes treats:
+bash treats ' and " differnet
+'' this will use the characters literally they are
+"" Will use all less $ ` \
+
+Ex:
+greetings='Hello World'
+echo $greetings
+Hello World
+
+greetings2="New $greetings"
+echo $greetings2
+New Hello World
+
+Executing code and saving in a variable
+user=$(whoami)
+user2=`whoami`
+
+The previous executiions will execute in a subshell

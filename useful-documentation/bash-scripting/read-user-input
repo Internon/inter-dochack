@@ -1,0 +1,5 @@
+capture user input and assign it to variable
+read variable
+
+-p allows to specify a promt
+-s put the user input as silent (you wont see the letters)

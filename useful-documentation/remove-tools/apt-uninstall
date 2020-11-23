@@ -1,0 +1,5 @@
+won't uninstall configuration files
+apt remove {package}
+
+Will uninstall configuration files
+apt remove {package} --purge

