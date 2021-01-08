@@ -1,3 +1,18 @@
+#Retrieve domains created by someone on domain {DOMAIN}
+amass intel -whois -d {DOMAIN} > whois-domains.txt
+#Retrieve reverse DNS from cidr and certificates check with active
+amass intel -active -cidr {IP/CIDR} > cidr-domains.txt
+#Find subdomains:
+cat whois-domains.txt cidr-domains.txt | sort -u > full-domains.txt
+for domain in $(cat full-domains.txt); do amass enum -active -d $domain -o $domain-with-subdomains.txt
+cat *-with-subdomains.txt > all-list-domains.txt
+#Scan all domains:
+for domain in $(cat all-list-domains.txt); do inter-recon -t $domain -w /home/jedi/Desktop/github/inter-recon/dictionaries/my-large-dict.txt -s all; done
+
+
+
+---------------
+OLD
 Changed initialrecon.py script to run correctly and changed crtsh_script.py to run with python3 and can execute with more than one domain at same execution on initial
 initial script does normal nmaps, dirsearchs, domain retrieve from certs, subdomain retrieve and executes crtsh_script.py that retrieve domains
 
