@@ -1,0 +1,2 @@
+hydra -l {USER} -p {PASSWORD} {HOST} ssh
+hydra -L {USER_FILE} -P {PASSWORD_FILE} {HOST} ssh
