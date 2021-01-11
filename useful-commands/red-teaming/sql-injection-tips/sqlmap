@@ -1,0 +1,4 @@
+sqlmap -u {URL}* --users
+
+* is to set where is the parameter to add the sql injection
+

@@ -1,0 +1,2 @@
+host -t ns {domain}
+host -l {domain} {dnsserver}
