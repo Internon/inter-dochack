@@ -1,0 +1,9 @@
+docker pull {repo}
+
+docker run -it --entrypoint /bin/bash {IMAGE}
+
+Inside bla bla
+
+TO clean:
+docker rmi -f `docker images -qa `
+docker rm `docker ps -qa`
