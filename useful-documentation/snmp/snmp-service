@@ -1,0 +1,34 @@
+SNMP MIB tree
+
+Scanning for SNMP
+sudo nmap -sU --open -p 161 {net} -oG {file-path}
+
+
+Get information of the host
+cat > comunity << EOF
+pubic
+private
+manager
+EOF
+
+for ip in $(seq 1 254); do echo 10.11.1.$ip; done > ips
+
+onesixtyone -c community -i ips
+
+
+Windows example
+Enumearting the entire MIB tree
+snmpwalk -c public -v1 -t {timeout period} {IP}
+
+Enumerating windows users
+snmpwalk -c public -v1 {IP} {MiB code example: 1.3.6.1.4.1.77.1.2.25}
+
+Enumerating windows processes running
+snmpwalk -c public -v1 {IP} 1.3.6.1.2.1.25.4.2.1.2
+
+Enumerating open tcp ports
+snmpwalk -c public -v1 {ip} 1.3.6.1.2.1.6.13.1.3
+
+Enumerating installed software
+snmpwalk -c public -v1 {ip} 1.3.6.1.2.1.25.6.3.1.2
+

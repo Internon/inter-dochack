@@ -1,0 +1,6 @@
+once get the shell on netcat:
+
+#PYTHON
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+

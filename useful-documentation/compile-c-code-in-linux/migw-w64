@@ -1,0 +1,8 @@
+sudo apt install mingw-w64
+
+i686-w64-mingw32-gcc X.c -o X.exe
+
+Search in google the possible error if so.
+i686-w64-mingw32-gcc X.c -o X.exe -lws2_32
+
+

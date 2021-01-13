@@ -1,0 +1,3 @@
+
+With lfi we can make this to add data directly instead of load a file
+data:text/plain,hello world

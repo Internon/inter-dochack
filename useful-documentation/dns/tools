@@ -1,0 +1,12 @@
+##DNSRecon
+#zonetransfer
+dnsrecon -d {domain} -t axfr
+
+#Bruteforce of possible subdomains
+dnsrecon -d {domain} -D ~/list.txt -t brt
+
+
+##DNSenum
+#Enumerate all
+dnsenum {domain}
+

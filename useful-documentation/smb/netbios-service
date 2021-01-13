@@ -1,0 +1,8 @@
+NETBIOS
+TCP 139
+Independent session layer and service
+
+The following command gets netbios names and some information
+sudo nbtscan -r {NETWORK}
+
+

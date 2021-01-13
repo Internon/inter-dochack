@@ -1,0 +1,59 @@
+#INFO
+Between lowest and highest memory address there is the program memory
+
+The short term data area from the program is known as stack.
+
+Each thread in the running application has its own stack.
+
+#Function return mechanics
+
+When code calls a function it needs to know whyere to return when a function exists
+This collection of data is saved in stack.
+
+#CPU Registers
+
+The CPU 9 - 32 bit registers to store positions
+There are registers and sub registers.
+
+#General purpose registers
+
+EAX: Arithmetical and logical instructions
+EBX Base pointer for memory addresses
+ECX Loop shift rotation counter
+EDX I7O Port addressing multiplication division
+ESI: Pointer of data and source in string copy operations
+EDI: Pointer of data and destination in string copy operations
+
+ESP - The stack pointer <- reference of a position on the memory
+EBP - The base pointer <- pointer of the top of the stack
+EIP - The instruction pointer <- points to the next instruction/pointer that needs to be executed
+
+#Buffer overflow walkthrough
+The base is that we need to write on the stack and modify the pointers to point to our code execution
+
+#Inmunity debugger
+An application that helps to exploit the buffer overflow because it lets you see the assembly information.
+
+- Navigate the code:
+Debug -> step into (The following memory) or step over (Entire function)
+
+To search 
+Right click on top left visual -> search for -> All referenced text strings
+Double clicking on the line we return inside the function we want.
+
+To place a break point <- a pause call , press f2 it will show you the memory position by a blue highline
+
+F9 will execute the function until the breakpoint
+
+Pressing F7 we step into the following instruction
+
+Execute till retunr Cntrl + F9
+
+Return function stores the position of the instruction on the EIP
+MOV EAX,0 is the retunr 0
+Leave 
+
+To add new arguments:
+File open and change arguments.
+F9 run program until breakpoint
+

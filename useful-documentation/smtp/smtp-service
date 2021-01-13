@@ -1,0 +1,8 @@
+Verify user exist
+nc -nv {mailserver} port
+VRFY {user}
+{response 252 user exist}
+
+expand
+
+
