@@ -1,0 +1,3 @@
+ftp {host} {port}
+binary
+put {hostpath} {destinationpath}

