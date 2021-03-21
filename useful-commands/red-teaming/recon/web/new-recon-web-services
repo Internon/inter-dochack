@@ -1,3 +1,5 @@
+wfuzz --conn-delay 10 --req-delay 10 --efield url -t 40 --filter "not (c=BBB and l=BBB and w=BBB)" -w {DICT PATH} --zE urlencode -f {OUTPUTFILE}.txt -L {URL}"FUZZ{asdfnottherexxxasdf}"
+
 I have made a bash that automates this 
 ###Process
 ##1 - nmap full ports and if there is a lot of IPs use interlace

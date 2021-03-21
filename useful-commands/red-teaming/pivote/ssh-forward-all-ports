@@ -1,0 +1,24 @@
+Dynamic Port Forwarding and Proxychains
+Opens a local port that forwards all traffic headed to that port to the destination machine, essentially allowing you to access new networks that are not directly accessible, and perform tasks such as nmap scanning without the need of installing nmap on the pivot host.
+
+# Alice:8080 -> Bob:22 -> Bob & Charlie's Network:0-65535
+
+# On Alice
+ssh root@bob -D 8080
+echo '[ProxyList]' > proxychains.conf
+echo 'socks5 127.0.0.1 8080' >> proxychains.conf
+proxychains nmap -T4 -n -Pn -sT -F -p 80 charlie
+IMPORTANT NOTE on Proxychains and Nmap:
+
+- Use -sT -Pn when proxychaining nmap!
+- ICMP (nmap host detection), UDP, nmap OS detection and non-fully established TCP connections (nmap SYN scan) will not work through proxychain, and will result in leakage, meaning your connections will go through as if without having a proxy at all, including revealing your IP address.
+- Why didn't proxychain work with nmap in the OffsecVM, but works on main Kali box? OffsecVM -> running proxychain nmap as ROOT -> defaults to SYN scan -> proxychain fails to establish SOCKS connection. Main Kali -> running proxychain nmap as non-privileged user -> defaults to TCP scan -> proxychain successfully establishes SOCKS connection.
+- No SYN scans, ICMP, UDP and OS detection: https://security.stackexchange.com/a/122562
+- Nmap and proxychains: https://ntu-offsec.github.io/blog/articles/nmap-proxychains/
+- ICMP/pings will not work with SOCKS proxy, as SOCKS is on layer 5 that acts as a proxy for TCP and UDP connections, of which ICMP requests are not. https://superuser.com/a/1030803
+Resources:
+
+Guide: https://netsec.ws/?p=278
+- plink, Windows ssh equivalent: /usr/share/windows-binaries/plink.exe
+- 3proxy, Windows SOCKS Proxy Server: https://forums.offensive-security.com/showthread.php?3196-15-5-1-2&p=42285#post42285 https://github.com/z3APA3A/3proxy
+- IE does not proxy DNS requests!: https://forums.offensive-security.com/showthread.php?3196-15-5-1-2&p=42285#post42285

