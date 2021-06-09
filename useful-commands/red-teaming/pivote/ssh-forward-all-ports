@@ -1,4 +1,27 @@
-Dynamic Port Forwarding and Proxychains
+####sshuttle
+
+Forward all traffic:
+
+sshuttle -r username@sshserver 0.0.0.0/0
+
+    Use the sshuttle -r parameter to specify a remote server.
+
+    By default sshuttle will automatically choose a method to use. Override with the sshuttle --method parameter.
+
+    There is a shortcut for 0.0.0.0/0 for those that value their wrists:
+
+    sshuttle -r username@sshserver 0/0
+
+    For ‘My VPN broke and need a temporary solution FAST to access local IPv4 addresses’:
+
+    sshuttle --dns -NHr username@sshserver 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+
+If you would also like your DNS queries to be proxied through the DNS server of the server you are connect to:
+
+sshuttle --dns -r username@sshserver 0/0
+
+
+####Dynamic Port Forwarding and Proxychains
 Opens a local port that forwards all traffic headed to that port to the destination machine, essentially allowing you to access new networks that are not directly accessible, and perform tasks such as nmap scanning without the need of installing nmap on the pivot host.
 
 # Alice:8080 -> Bob:22 -> Bob & Charlie's Network:0-65535
@@ -6,7 +29,7 @@ Opens a local port that forwards all traffic headed to that port to the destinat
 # On Alice
 ssh root@bob -D 8080
 echo '[ProxyList]' > proxychains.conf
-echo 'socks5 127.0.0.1 8080' >> proxychains.conf
+echo 'socks4 127.0.0.1 8080' >> proxychains.conf
 proxychains nmap -T4 -n -Pn -sT -F -p 80 charlie
 IMPORTANT NOTE on Proxychains and Nmap:
 
