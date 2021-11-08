@@ -1,5 +1,5 @@
 We will install the packages versions that haven't any problem with dual monitor
 
-sudo pacman -U http://archlinux.arkena.net/archive/packages/x/xorg-server/xorg-server-1.19.3-3-x86_64.pkg.tar.xz
+sudo pacman --overwrite * --noconfirm -U http://archlinux.arkena.net/archive/packages/x/xorg-server/xorg-server-1.19.3-3-x86_64.pkg.tar.xz 
 
-sudo pacman -U http://archlinux.arkena.net/archive/packages/x/xf86-video-qxl/xf86-video-qxl-0.1.5-5-x86_64.pkg.tar.xz
+sudo pacman --overwrite * --noconfirm -U http://archlinux.arkena.net/archive/packages/x/xf86-video-qxl/xf86-video-qxl-0.1.5-5-x86_64.pkg.tar.xz 
